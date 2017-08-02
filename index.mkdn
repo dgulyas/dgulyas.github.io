@@ -1,0 +1,14 @@
+# David Gulyas
+
+
+## Repos
+
+**[CPU](https://github.com/dgulyas/cpu):** A cpu built in a logic simulator with an included assembler. Made for teaching.
+
+**[NetList](https://github.com/dgulyas/NetList):** Simple REST service that stores lists.
+
+**[cell](https://github.com/dgulyas/cell):** A game for AIs to play. An excuse to use LINQ.
+
+## About
+
+**Email:** &lt;firstName&gt;james&lt;lastname&gt;@gmail.com
