@@ -1,0 +1,23 @@
+<style>
+html {
+    height: 100%;
+}
+body {
+    background: #053400;
+}
+h1 {
+    color: #B0E27A;
+    margin-left: 40px;
+}
+h2 {
+	color: #8BB45F;
+
+}
+p {
+	color: #41BA2F;
+}
+a {
+	color: #78D261;
+	/*text-decoration:none;*/
+}
+</style>

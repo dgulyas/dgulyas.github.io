@@ -10,7 +10,6 @@
 **[cell](https://github.com/dgulyas/cell):** A game for AIs to play. An excuse to use LINQ.
 
 ## About
-
 **Email:** &lt;firstName&gt;james&lt;lastname&gt;@gmail.com
 
 I'm on [LinkedIn](https://www.linkedin.com/in/david-gulyas-12867063/).
