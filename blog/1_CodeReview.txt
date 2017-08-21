@@ -1,5 +1,5 @@
 Code Reviews
 
-I recently had a friend ask me why code review are worth doing. I thought for a monent and realized that there are too many reasons to fit them all in a short concise answer. Therefore, blog post...
+I recently had a friend ask me why code review are worth doing. I thought for a monent and realized that there are too many reasons to fit them all in a short concise answer. Therefore, blog post.
 
-When you're writing 
+Code review offers a chance for fresh eyes to look over a change. When the writer is in the middle of creating a change they often have a lot of state stored in their head. Things like variable names and what the neighbouring functions do. This creates a heavy cognitive load. It's harder to see the big picture when you're so focused on the details. A code reviewer is able to look at a change and ignore all the details that don't matter.

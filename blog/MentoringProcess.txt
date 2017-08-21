@@ -1,0 +1,48 @@
+# The Mentoring Process
+
+The mentoring process is all about getting down and dirty in another person's (professional) life. Your goal is to guide them into being a better person/professional/programmer. Below is described a process that can facilitate that.
+
+## Discovery
+
+The Discovery step involves getting to know your mentee. How are they doing? What areas are the excelling and struggling in? What assumptions have they made (either correct or incorrect)? How do they think about things? What kind of attitudes do they have? It also involves getting to know how others view your mentee. Are there frictions points between them and their co-workers? Do they get along with their coworkers? Do their coworkers think they are lacking in any particular area? This step can be though of as opening the Windows of Information (below). Remember to Fish For Your Own Information (below).
+
+## Thought
+
+The Thought step involves taking the information you now know and reflecting upon it in order to find areas that your mentee can improve in. Try to find concrete courses of action that your mentee can undertake. Giving them general guidelines like "put yourself in the customers place" doesn't help much. A conversation about different scenarios where that guideline could be applied is more helpful. A concrete goal of "next time you implement a feature, try to imagine a customer using it. What are their goals." is better. This step requires that the mentor has experience and wisdom in the areas that the mentee is going through. Maybe they're totally unaware of an area that they could be improving on. Refer to the Spectrum of Competency.
+
+##Prompting
+
+The Prompting step involves communicating with your mentee about the things you thought of in the Thought step. 
+
+<Side note>Why are you mentoring? Because it's good on a resume? Because it sounded cool? Because you want them to know how awesome you are? Because you enjoy teaching? Because you want your mentee to succeed? Because you care about their struggles? What makes you care about them enough to spend all this time helping them improve? Some of these are more self serving than others. A Christian perspective would be that we do the good works that we do because of the love we have for one another. If your mentee can see that you care about them, and that you're being their mentor out of that care instead of being their mentor because it makes you look good, they'll be much more receptive to where you want to lead them. </Side note>
+
+This step might involve criticizing your mentee in some way as you show them where they can improve. Depending on how your mentee handles criticism, this can be very confrontational. It's your job as the mentor to try and avoid this. Refer to Criticism As Information below.
+
+Ideally, at the end of this step your mentee has made commitments to the concrete goals you thought of in the Thought step.
+
+## Accountability
+
+The Accountability step involves holding your mentee accountable to the commitments they made in the Prompting step. Intentionally check in with them at appropriate intervals, which are probably more than once a month. Perhaps they've made abysmal progress on their goals. Don't judge them, but hold them accountable for what they've done. Ask them why they think it's not going well etc. If it's really bad it might prompt you go to back to the thought step and wonder why it's going so wrong. If they're making great progress remember to verbally reinforce that. A "good job" goes a long. It might be the first positive reinforcement they've heard on the job.
+
+## Spectrum of Competency
+
+Who needs to write things when there's wikipedia: https://en.wikipedia.org/wiki/Four_stages_of_competence
+
+## Windows of Information
+
+There are 4 classes of information about someone:
+
+* What do they know about themselves.
+* What do others know about them.
+* What do they think others know about them.
+* What does God know about them.
+
+## Criticism As Information
+
+People can base their self worth, or identity, or confidence on various aspects of themselves. If people criticize those aspects it can feel like they're being attacked which leads to defensiveness. If that seems to be the case with your mentee then that's an area they need mentoring in. Ideally they can arrive at a place where they view criticism as information, which can be acted upon. Perhaps they need to base their worth in something less fail-able than their human nature*cough*Jesus*cough*. Helping them do that though is a little outside of the scope of a professional/technical mentorship.
+
+## Fishing For Your Own Information
+
+Possible scenario: A coworker tells you something personal about your mentee. You go tell your mentee about this new knowledge you have about them. Your mentee gets upset/angry that people are talking about them behind their back, possibly in a negative way. The thing the coworker said turns out to be false anyways.
+
+Instead of that happening it's better to fish for your own information directly from your mentee. If a coworker says your mentee is taking 3 hour lunches, try and see if it's true on your own and ask them how they've been managing their break vs work time. The worst case scenario is your mentee trying to cover up their bad habits, which doesn't go anywhere good. If they are having a problem with long lunches hopefully they can admit it, and improving on it can be part of the mentoring process.
