@@ -1,0 +1,5 @@
+Code Reviews
+
+I recently had a friend ask me why code review are worth doing. I thought for a monent and realized that there are too many reasons to fit them all in a short concise answer. Therefore, blog post...
+
+When you're writing 
