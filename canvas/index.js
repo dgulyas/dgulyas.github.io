@@ -15,6 +15,20 @@ canvas.addEventListener("mousedown", function (e) {
 canvas.addEventListener("mouseup", function (e) {
 	mouseDown = false
 }, false);
+let touchDown = false
+canvas.addEventListener("touchmove", function (e) {
+	if(touchDown){
+		handleMouseMove(e)
+	}
+}, false);
+canvas.addEventListener("touchstart", function (e) {
+	touchDown = true
+	handleMouseMove(e)
+}, false);
+canvas.addEventListener("touchend", function (e) {
+	touchDown = false
+}, false);
+
 
 function redrawRandTiles(box, n){
 	for( let i = 0; i < n; i++){
