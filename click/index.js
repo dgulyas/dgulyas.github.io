@@ -1,32 +1,48 @@
 const canvas = document.querySelector('canvas');
-canvas.width = innerWidth
-canvas.height = innerHeight
+const sideLength = 100
+canvas.width = sideLength * 2
+canvas.height = sideLength * 2
+const contxt = canvas.getContext('2d')
 
-/*
-let mouseDown = false
-canvas.addEventListener("mousemove", function (e) {
-	if(mouseDown){
-		handleMouseMove(e)
-	}
-}, false);
+
 canvas.addEventListener("mousedown", function (e) {
-	mouseDown = true
-	handleMouseMove(e)
+	handleClick(e)
 }, false);
-canvas.addEventListener("mouseup", function (e) {
-	mouseDown = false
-}, false);
-let touchDown = false
-canvas.addEventListener("touchmove", function (e) {
-	if(touchDown){
-		handleMouseMove(e)
-	}
-}, false);
+
 canvas.addEventListener("touchstart", function (e) {
-	touchDown = true
-	handleMouseMove(e)
+	handleClick(e)
 }, false);
-canvas.addEventListener("touchend", function (e) {
-	touchDown = false
-}, false);
-*/
+
+function handleClick(e){
+	left = e.clientX < sideLength ? 0 : 1
+	_top = e.clientY < sideLength ? 0 : 1
+	childKey = left + "," + _top
+	currentTile.children[childKey].data['clicked'] = true
+
+	draw(contxt, currentTile)
+}
+
+function draw(context, tile){
+	setColor(context, tile.getChild("0,0").data["clicked"])
+	context.fillRect(0, 0, sideLength, sideLength)
+
+	setColor(context, tile.getChild("0,1").data["clicked"])
+	context.fillRect(0, sideLength, sideLength, sideLength)
+
+	setColor(context, tile.getChild("1,0").data["clicked"])
+	context.fillRect(sideLength, 0, sideLength, sideLength)
+
+	setColor(context, tile.getChild("1,1").data["clicked"])
+	context.fillRect(sideLength, sideLength, sideLength, sideLength)
+}
+
+function setColor(context, clicked){
+	if(clicked){
+		context.fillStyle = "Green"
+	}else{
+		context.fillStyle = "Black"
+	}
+}
+
+let currentTile = new Tile(1, null, null)
+draw(contxt, currentTile)

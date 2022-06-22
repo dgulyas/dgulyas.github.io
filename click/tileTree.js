@@ -27,15 +27,15 @@ class Tile {
         if(firstChild != null){
             this.children[1] = firstChild
         }
-        
+
         this.data = {}
     }
 
-    getChild(childNum){
-        if(this.children[childNum] == undefined){
-            this.children[childNum] = new Tile(this.level - 1, this, null)
+    getChild(childKey){
+        if(this.children[childKey] == undefined){
+            this.children[childKey] = new Tile(this.level - 1, this, null)
         }
-        return this.children[childNum]
+        return this.children[childKey]
     }
     
     getParent(){
