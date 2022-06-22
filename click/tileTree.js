@@ -1,6 +1,5 @@
 class Tree {
-
-    //lag is an issue at level 13
+    
     constructor(level){
         this.root = new Tile(level, null, null)
     }
@@ -40,10 +39,16 @@ class Tile {
     
     getParent(){
         if(this.parent == null){
-            let newHead = new Tile(this.level + 1, null, this)
-            this.parent = newHead
+            let parent = new Tile(this.level + 1, null, this)
+            parent.children["0,0"] = this //todo: this is bad since the tile shouldn't know about the child key format.
+            this.parent = parent
+            
         }
         return this.parent
+    }
+
+    toString(){
+        return "clicked: " + this.data["clicked"]
     }
 
 }
