@@ -1,8 +1,8 @@
-const canvas = document.querySelector('canvas');
-const sideLength = 100
-canvas.width = sideLength * 2
-canvas.height = sideLength * 2
-const contxt = canvas.getContext('2d')
+const m_canvas = document.querySelector('canvas');
+const m_sideLength = 100
+m_canvas.width = m_sideLength * 2
+m_canvas.height = m_sideLength * 2
+const m_context = m_canvas.getContext('2d')
 
 //first value answers if it's in the top row
 //second value answers if it's in the left column
@@ -24,17 +24,17 @@ const levelNumText = document.getElementById("levelNumText");
 const clickedNumText = document.getElementById("clickedNumText");
 let numClicked = 0
 
-canvas.addEventListener("mousedown", function (e) {
+m_canvas.addEventListener("mousedown", function (e) {
 	handleClick(e)
 }, false);
 
-canvas.addEventListener("touchstart", function (e) {
+m_canvas.addEventListener("touchstart", function (e) {
 	handleClick(e)
 }, false);
 
 function handleClick(e){
-	left = e.clientX < sideLength ? 0 : 1
-	_top = e.clientY < sideLength ? 0 : 1
+	left = e.clientX < m_sideLength ? 0 : 1
+	_top = e.clientY < m_sideLength ? 0 : 1
 	childKey = left + "," + _top
 	
 	if(currentTile.level <= 1){
@@ -48,21 +48,21 @@ function handleClick(e){
 		currentTile = currentTile.getChild(childKey)
 
 	}
-	draw(contxt, currentTile)
+	draw(m_context, currentTile)
 }
 
  function handleGoHigherClick(e){
 	currentTile = currentTile.getParent()
-	draw(contxt, currentTile)
+	draw(m_context, currentTile)
  }
 
 function draw(context){
 	//todo: This is bad, maybe have dict of child keys pointing to the point the rect starts at?
 	drawTile(context, currentTile.getChild("0,0"), 0, 0)
-	drawTile(context, currentTile.getChild("0,1"), 0, sideLength)
-	drawTile(context, currentTile.getChild("1,0"), sideLength, 0)
-	drawTile(context, currentTile.getChild("1,1"), sideLength, sideLength)
-	
+	drawTile(context, currentTile.getChild("0,1"), 0, m_sideLength)
+	drawTile(context, currentTile.getChild("1,0"), m_sideLength, 0)
+	drawTile(context, currentTile.getChild("1,1"), m_sideLength, m_sideLength)
+	drawBorder(context)
 	setLevelNumText(currentTile.level)
 }
 
@@ -73,10 +73,23 @@ function drawTile(context, tile, x, y){
 	}else{
 		context.fillStyle = "Red"
 	}
-	context.fillRect(x, y, sideLength, sideLength)
+	context.fillRect(x, y, m_sideLength, m_sideLength)
 
 	context.font = '12px serif';
-	context.strokeText(tile.level, x + 10, y + 30)
+	context.strokeText(tile.level, x + 10, y + 20)
+}
+
+function drawBorder(context){
+	lWidth = 4
+	prevLineWidth = context.lineWidth
+	context.lineWidth = lWidth
+
+	context.fillStyle = "Black"
+	context.strokeRect(lWidth/2, lWidth/2, m_sideLength*2 -lWidth, m_sideLength*2 -lWidth)
+	context.strokeRect(lWidth/2, lWidth/2, m_sideLength*2 -lWidth, m_sideLength -lWidth)
+	context.strokeRect(lWidth/2, lWidth/2, m_sideLength -lWidth, m_sideLength*2 -lWidth)
+
+	context.lineWidth = prevLineWidth
 }
 
 function setLevelNumText(newLevel){
@@ -93,7 +106,7 @@ function setClickedNumText(newLevel){
 }
 
 let currentTile = new Tile(1, null, null)
-draw(contxt, currentTile)
+draw(m_context, currentTile)
 setLevelNumText(4)
 setClickedNumText(0)
 
