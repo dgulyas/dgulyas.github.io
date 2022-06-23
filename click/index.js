@@ -32,9 +32,9 @@ m_canvas.addEventListener("touchstart", function (e) {
 }, false);
 
 function handleClick(e){
-	left = e.clientX < m_sideLength ? 0 : 1
-	_top = e.clientY < m_sideLength ? 0 : 1
-	childKey = left + "," + _top
+	left = e.clientX >= m_sideLength
+	_top = e.clientY >= m_sideLength
+	childKey = [left, _top]
 	
 	if(currentTile.level <= 1){
 		if(currentTile.children[childKey].data['clicked'] != true){
@@ -45,7 +45,6 @@ function handleClick(e){
 		}
 	}else{
 		currentTile = currentTile.getChild(childKey)
-
 	}
 	draw(m_context, currentTile)
 }
@@ -57,12 +56,11 @@ function handleClick(e){
 
 function draw(context){
 	//todo: This is bad, maybe have dict of child keys pointing to the point the rect starts at?
-	drawTile(context, currentTile.getChild("0,0"), 0, 0)
-	drawTile(context, currentTile.getChild("0,1"), 0, m_sideLength)
-	drawTile(context, currentTile.getChild("1,0"), m_sideLength, 0)
-	drawTile(context, currentTile.getChild("1,1"), m_sideLength, m_sideLength)
+	drawTile(context, currentTile.getChild(childKeys[1]), 0, 0)
+	drawTile(context, currentTile.getChild(childKeys[2]), 0, m_sideLength)
+	drawTile(context, currentTile.getChild(childKeys[3]), m_sideLength, 0)
+	drawTile(context, currentTile.getChild(childKeys[4]), m_sideLength, m_sideLength)
 	drawBorder(context)
-	setLevelNumText(currentTile.level)
 }
 
 function drawTile(context, tile, x, y){
