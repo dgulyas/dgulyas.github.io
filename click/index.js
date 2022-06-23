@@ -20,7 +20,6 @@ goHigherButton.addEventListener("click", e => {
 	handleGoHigherClick(e)
 });
 
-const levelNumText = document.getElementById("levelNumText");
 const clickedNumText = document.getElementById("clickedNumText");
 let numClicked = 0
 
@@ -76,7 +75,7 @@ function drawTile(context, tile, x, y){
 	context.fillRect(x, y, m_sideLength, m_sideLength)
 
 	context.font = '12px serif';
-	context.strokeText(tile.level, x + 10, y + 20)
+	context.strokeText("Level " +tile.level, x + 10, y + 20)
 }
 
 function drawBorder(context){
@@ -92,9 +91,6 @@ function drawBorder(context){
 	context.lineWidth = prevLineWidth
 }
 
-function setLevelNumText(newLevel){
-	levelNumText.innerHTML = "Current Level: " + newLevel
-}
 
 function incrementClickedNumText(){
 	setClickedNumText(numClicked + 1)
@@ -107,7 +103,6 @@ function setClickedNumText(newLevel){
 
 let currentTile = new Tile(1, null, null)
 draw(m_context, currentTile)
-setLevelNumText(4)
 setClickedNumText(0)
 
 //Add delay to how long it takes to click a tile??
