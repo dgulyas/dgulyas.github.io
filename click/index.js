@@ -1,27 +1,25 @@
 const m_canvas = document.querySelector('canvas');
-const m_sideLength = 100
+const m_sideLength = 150
 m_canvas.width = m_sideLength * 2
 m_canvas.height = m_sideLength * 2
 const m_context = m_canvas.getContext('2d')
 
-//first value answers if it's in the top row
-//second value answers if it's in the left column
-//todo: use these keys instead of current ones
-//Also change getParent to not need key? Maybe set default key, use static?
-const childKeys = {
-	1: [false, false],
-	2: [false, true],
-	3: [true, false],
-	4: [true, true]
+//the x,y coordinates that each tile will be drawn at.
+//the index (1,2,3 or 4) can act as an id for the tile.
+const m_tileLocations = {
+	1: [0, 0],
+	2: [0, m_sideLength],
+	3: [m_sideLength, 0],
+	4: [m_sideLength, m_sideLength]
 }
 
-const goHigherButton = document.getElementById('goHigherButton');
-goHigherButton.addEventListener("click", e => {
+const m_goHigherButton = document.getElementById('goHigherButton');
+m_goHigherButton.addEventListener("click", e => {
 	handleGoHigherClick(e)
 });
 
-const clickedNumText = document.getElementById("clickedNumText");
-let numClicked = 0
+const m_clickedNumText = document.getElementById("clickedNumText");
+let m_numClicked = 0
 
 m_canvas.addEventListener("mousedown", function (e) {
 	handleClick(e)
@@ -32,48 +30,52 @@ m_canvas.addEventListener("touchstart", function (e) {
 }, false);
 
 function handleClick(e){
-	left = e.clientX >= m_sideLength
-	_top = e.clientY >= m_sideLength
-	childKey = [left, _top]
-	
-	if(currentTile.level <= 1){
-		if(currentTile.children[childKey].data['clicked'] != true){
-			currentTile.children[childKey].data['clicked'] = true
+	//computing the tileNum is complicated.
+	//it's similar to how a 2 digit binary number works.
+	tileNum = 1
+	tileNum += e.clientY >= m_sideLength ? 1 : 0
+	tileNum += e.clientX >= m_sideLength ? 2 : 0
+
+	if(m_currentTile.level <= 1){
+		if(m_currentTile.children[tileNum].data['clicked'] != true){
+			m_currentTile.children[tileNum].data['clicked'] = true
 			incrementClickedNumText()
 
 			//if all squares are clicked, set parent to clicked
 		}
 	}else{
-		currentTile = currentTile.getChild(childKey)
+		m_currentTile = m_currentTile.getChild(tileNum)
 	}
-	draw(m_context, currentTile)
+	draw(m_context, m_currentTile)
 }
 
  function handleGoHigherClick(e){
-	currentTile = currentTile.getParent()
-	draw(m_context, currentTile)
+	m_currentTile = m_currentTile.getParent(1)
+	draw(m_context, m_currentTile)
  }
 
 function draw(context){
-	//todo: This is bad, maybe have dict of child keys pointing to the point the rect starts at?
-	drawTile(context, currentTile.getChild(childKeys[1]), 0, 0)
-	drawTile(context, currentTile.getChild(childKeys[2]), 0, m_sideLength)
-	drawTile(context, currentTile.getChild(childKeys[3]), m_sideLength, 0)
-	drawTile(context, currentTile.getChild(childKeys[4]), m_sideLength, m_sideLength)
+	for (const [key, value] of Object.entries(m_tileLocations)){
+		drawTile(context, key)	
+	}
 	drawBorder(context)
 }
 
-function drawTile(context, tile, x, y){
-	//setColor(context, tile.data["clicked"])
+function drawTile(context, tileNum){
+	tile = m_currentTile.getChild(tileNum)
+	//todo: tile color could be stored in tile data?
 	if(tile.data["clicked"]){
 		context.fillStyle = "Green"
 	}else{
 		context.fillStyle = "Red"
 	}
+
+	x = m_tileLocations[tileNum][0]
+	y = m_tileLocations[tileNum][1]
 	context.fillRect(x, y, m_sideLength, m_sideLength)
 
 	context.font = '12px serif';
-	context.strokeText("Level " +tile.level, x + 10, y + 20)
+	context.strokeText("Level " + tile.level, x + 10, y + 20)
 }
 
 function drawBorder(context){
@@ -82,25 +84,24 @@ function drawBorder(context){
 	context.lineWidth = lWidth
 
 	context.fillStyle = "Black"
-	context.strokeRect(lWidth/2, lWidth/2, m_sideLength*2 -lWidth, m_sideLength*2 -lWidth)
-	context.strokeRect(lWidth/2, lWidth/2, m_sideLength*2 -lWidth, m_sideLength -lWidth)
-	context.strokeRect(lWidth/2, lWidth/2, m_sideLength -lWidth, m_sideLength*2 -lWidth)
+	context.strokeRect(lWidth/2, lWidth/2, m_sideLength*2 - lWidth, m_sideLength*2 - lWidth)
+	context.strokeRect(lWidth/2, lWidth/2, m_sideLength*2 - lWidth, m_sideLength - lWidth)
+	context.strokeRect(lWidth/2, lWidth/2, m_sideLength - lWidth, m_sideLength*2 - lWidth)
 
 	context.lineWidth = prevLineWidth
 }
 
 
 function incrementClickedNumText(){
-	setClickedNumText(numClicked + 1)
+	setClickedNumText(m_numClicked + 1)
 }
 
 function setClickedNumText(newLevel){
-	numClicked = newLevel
-	clickedNumText.innerHTML = "Num Clicked: " + numClicked
+	m_numClicked = newLevel
+	m_clickedNumText.innerHTML = "Num Clicked: " + m_numClicked
 }
 
-let currentTile = new Tile(1, null, null)
-draw(m_context, currentTile)
-setClickedNumText(0)
+let m_currentTile = new Tile(1, null, null)
+draw(m_context, m_currentTile)
 
 //Add delay to how long it takes to click a tile??

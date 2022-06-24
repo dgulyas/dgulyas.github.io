@@ -37,10 +37,12 @@ class Tile {
         return this.children[childKey]
     }
     
-    getParent(){
+    //if the parent doesn't exist, add the tile as a child
+    //of the created parent using the defaultChildKey
+    getParent(defaultChildKey = 1){
         if(this.parent == null){
             let parent = new Tile(this.level + 1, null, this)
-            parent.children["0,0"] = this //todo: this is bad since the tile shouldn't know about the child key format.
+            parent.children[defaultChildKey] = this //todo: this is bad since the tile shouldn't know about the child key format.
             this.parent = parent
             
         }
