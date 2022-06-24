@@ -55,14 +55,18 @@ function handleGoHigherClick(e){
 function setClickedIfAllChildrenClicked(tile){
 	//this only applies if a tile isn't a bottom level tile
 	if(tile.level >= 1){
-		let allChildrenClicked = true
-		for (const [key, value] of Object.entries(m_tileLocations)){
-			if(tile.getChild(key).data['clicked'] != true){
-				allChildrenClicked = false
-			}
-		}
-		tile.data['clicked'] = allChildrenClicked
+		tile.data['clicked'] = allChildrenClicked(tile)
 	}
+}
+
+function allChildrenClicked(tile){
+	let allChildrenClicked = true
+	for (const [key, value] of Object.entries(m_tileLocations)){
+		if(tile.getChild(key).data['clicked'] != true){
+			allChildrenClicked = false
+		}
+	}
+	return allChildrenClicked
 }
 
 function draw(context){
@@ -70,6 +74,8 @@ function draw(context){
 		drawTile(context, key)	
 	}
 	drawBorder(context)
+	
+	m_goHigherButton.disabled = m_currentTile.parent == null && !allChildrenClicked(m_currentTile)
 }
 
 function drawTile(context, tileNum){
