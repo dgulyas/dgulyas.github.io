@@ -42,7 +42,7 @@ class Tile {
     getParent(defaultChildKey = 1){
         if(this.parent == null){
             let parent = new Tile(this.level + 1, null, this)
-            parent.children[defaultChildKey] = this //todo: this is bad since the tile shouldn't know about the child key format.
+            parent.children[defaultChildKey] = this
             this.parent = parent
             
         }

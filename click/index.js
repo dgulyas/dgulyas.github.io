@@ -40,8 +40,6 @@ function handleClick(e){
 		if(m_currentTile.children[tileNum].data['clicked'] != true){
 			m_currentTile.children[tileNum].data['clicked'] = true
 			incrementClickedNumText()
-
-			//if all squares are clicked, set parent to clicked
 		}
 	}else{
 		m_currentTile = m_currentTile.getChild(tileNum)
@@ -49,10 +47,23 @@ function handleClick(e){
 	draw(m_context, m_currentTile)
 }
 
- function handleGoHigherClick(e){
+function handleGoHigherClick(e){
 	m_currentTile = m_currentTile.getParent(1)
 	draw(m_context, m_currentTile)
- }
+}
+
+function setClickedIfAllChildrenClicked(tile){
+	//this only applies if a tile isn't a bottom level tile
+	if(tile.level >= 1){
+		let allChildrenClicked = true
+		for (const [key, value] of Object.entries(m_tileLocations)){
+			if(tile.getChild(key).data['clicked'] != true){
+				allChildrenClicked = false
+			}
+		}
+		tile.data['clicked'] = allChildrenClicked
+	}
+}
 
 function draw(context){
 	for (const [key, value] of Object.entries(m_tileLocations)){
@@ -63,7 +74,9 @@ function draw(context){
 
 function drawTile(context, tileNum){
 	tile = m_currentTile.getChild(tileNum)
-	//todo: tile color could be stored in tile data?
+
+	setClickedIfAllChildrenClicked(tile)
+
 	if(tile.data["clicked"]){
 		context.fillStyle = "Green"
 	}else{
@@ -90,7 +103,6 @@ function drawBorder(context){
 
 	context.lineWidth = prevLineWidth
 }
-
 
 function incrementClickedNumText(){
 	setClickedNumText(m_numClicked + 1)
