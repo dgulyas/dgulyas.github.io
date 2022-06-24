@@ -53,7 +53,8 @@ function handleGoHigherClick(e){
 }
 
 function setClickedIfAllChildrenClicked(tile){
-	//this only applies if a tile isn't a bottom level tile
+	//This only applies if a tile isn't a bottom level tile
+	//Bottom level tiles don't have children
 	if(tile.level >= 1){
 		tile.data['clicked'] = allChildrenClicked(tile)
 	}
