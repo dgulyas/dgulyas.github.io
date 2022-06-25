@@ -23,14 +23,18 @@ let m_numClicked = 0
 
 const m_logBox = document.getElementById("log")
 
+const m_levelText = document.getElementById("levelText")
+m_levelText.style.marginLeft = m_sideLength - 35
+
 m_canvas.addEventListener("mousedown", function (e) {
 	handleClick(e)
 }, false);
 
 //This is broken
+//fix: https://stackoverflow.com/questions/41993176/determine-touch-position-on-tablets-with-javascript/61732450#61732450
 m_canvas.addEventListener("touchstart", function (e) {
 	handleClick(e)
-	logMessage(e.clientX + "," + e.clientY, false)
+	logMessage(e.clientX + "," + e.clientY, false) //this shows as 'undefined,undefined'
 }, false);
 
 function handleClick(e){
@@ -86,6 +90,8 @@ function draw(context){
 		m_highestLevel = m_currentTile.level
 		logMessage("Access to level " + (m_highestLevel - 1) + " tiles granted.")
 	}
+
+	m_levelText.innerText = "Level " + m_currentTile.level
 }
 
 function drawTile(context, tileNum){
