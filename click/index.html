@@ -3,14 +3,26 @@
 	body {
 		margin: 0;
 	}
+
+	p.ex1 {
+		margin-bottom: 0px;
+	}
+
+	textarea {
+		overflow-y: scroll;
+		resize: none;
+	}
 </style>
 
 <canvas></canvas>
 <br />
 <p id="clickedNumText">Num Clicked: 0</p>
 <button type="button" id="goHigherButton">Go Higher</button>
-<p>Level 0 tiles will turn green if clicked.</p>
-<p>Higher level tiles will turn green if all<br>tiles below them are green.</p>
+<!-- <p>Level 0 tiles will turn green if clicked.</p>
+<p>Higher level tiles will turn green if all<br>tiles below them are green.</p> -->
+
+<p class="ex1">Log</p>
+<textarea id="log" rows="8" cols="60" readonly></textarea>
 
 <script src="./tileTree.js"></script>
 <script src="./index.js"></script>

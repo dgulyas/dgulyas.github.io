@@ -21,12 +21,16 @@ m_goHigherButton.addEventListener("click", e => {
 const m_clickedNumText = document.getElementById("clickedNumText");
 let m_numClicked = 0
 
+const m_logBox = document.getElementById("log")
+
 m_canvas.addEventListener("mousedown", function (e) {
 	handleClick(e)
 }, false);
 
+//This is broken
 m_canvas.addEventListener("touchstart", function (e) {
 	handleClick(e)
+	logMessage(e.clientX + "," + e.clientY, false)
 }, false);
 
 function handleClick(e){
@@ -77,6 +81,11 @@ function draw(context){
 	drawBorder(context)
 	
 	m_goHigherButton.disabled = m_currentTile.parent == null && !allChildrenClicked(m_currentTile)
+
+	if(m_highestLevel < m_currentTile.level){
+		m_highestLevel = m_currentTile.level
+		logMessage("Access to level " + (m_highestLevel - 1) + " tiles granted.")
+	}
 }
 
 function drawTile(context, tileNum){
@@ -120,7 +129,26 @@ function setClickedNumText(newLevel){
 	m_clickedNumText.innerHTML = "Num Clicked: " + m_numClicked
 }
 
+function logMessage(message, printTime = true){
+	timeString = ""
+	if(printTime){
+		timeString = new Date().toLocaleTimeString() + ": "
+	}
+	m_logBox.value += '\r\n' + timeString + message
+}
+
+function logRules(){
+	logMessage("Rules:")
+	logMessage("Level 0 tiles will turn green if clicked.")
+	logMessage("Higher level tiles will turn green if all")
+	logMessage("tiles below them are green.")
+	logMessage("", false)
+}
+
+let m_highestLevel = 0
 let m_currentTile = new Tile(1, null, null)
+logRules()
 draw(m_context, m_currentTile)
+
 
 //Add delay to how long it takes to click a tile??
