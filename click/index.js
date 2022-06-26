@@ -22,6 +22,7 @@ let m_levelText = null
 
 function loadElementsAndListeners(){
 	m_clickedNumText = document.getElementById("clickedNumText");
+	m_clickedNumText.style.marginLeft = m_sideLength - 65
 	m_logBox = document.getElementById("log")
 	m_levelText = document.getElementById("levelText")
 	m_levelText.style.marginLeft = m_sideLength - 35
@@ -41,6 +42,7 @@ function loadElementsAndListeners(){
 	m_goHigherButton.addEventListener("click", e => {
 		handleGoHigherClick(e)
 	});
+	m_goHigherButton.style.marginLeft = m_sideLength - 45
 }
 
 function handleClick(e){
