@@ -117,8 +117,11 @@ function drawTile(context, tileNum){
 	y = m_tileLocations[tileNum][1]
 	context.fillRect(x, y, m_sideLength, m_sideLength)
 
-	context.font = '12px serif';
-	context.strokeText("Level " + tile.level, x + 10, y + 20)
+	context.fillStyle = "Black"
+	context.font = '24px serif';
+	context.fillText("Level", x + m_sideLength/2 - 28, y + 40)
+	context.font = '36px serif';
+	context.fillText(tile.level, x + m_sideLength/2 - 10, y + 75)
 }
 
 function drawBorder(context){
