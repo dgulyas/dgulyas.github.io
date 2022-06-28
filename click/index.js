@@ -28,14 +28,16 @@ function loadElementsAndListeners(){
 	m_levelText.style.marginLeft = m_sideLength - 35
 
 	m_canvas.addEventListener("mousedown", function (e) {
-		handleClick(e)
+		handleClick(e.clientX, e.clientY)
 	}, false);
 
 	//This is broken
 	//fix: https://stackoverflow.com/questions/41993176/determine-touch-position-on-tablets-with-javascript/61732450#61732450
 	m_canvas.addEventListener("touchstart", function (e) {
-		handleClick(e)
-		logMessage(e.clientX + "," + e.clientY, false) //this shows as 'undefined,undefined'
+		var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+
+		handleClick(touch.pageX, touch.pageY)
+		logMessage(touch.pageX + "," + touch.pageY, false) //this shows as 'undefined,undefined'
 	}, false);
 
 	m_goHigherButton = document.getElementById('goHigherButton');
@@ -45,12 +47,12 @@ function loadElementsAndListeners(){
 	m_goHigherButton.style.marginLeft = m_sideLength - 45
 }
 
-function handleClick(e){
+function handleClick(x, y){
 	//computing the tileNum is complicated.
 	//it's similar to how a 2 digit binary number works.
 	tileNum = 1
-	tileNum += e.clientY >= m_sideLength ? 1 : 0
-	tileNum += e.clientX >= m_sideLength ? 2 : 0
+	tileNum += y >= m_sideLength ? 1 : 0
+	tileNum += x >= m_sideLength ? 2 : 0
 
 	if(m_currentTile.level <= 1){
 		if(m_currentTile.children[tileNum].data['clicked'] != true){
@@ -96,7 +98,7 @@ function draw(context){
 
 	if(m_highestLevel < m_currentTile.level){
 		m_highestLevel = m_currentTile.level
-		logMessage("Access to level " + (m_highestLevel) + " granted.")
+		logMessage("Reached level " + (m_highestLevel))
 	}
 
 	m_levelText.innerText = "Level " + m_currentTile.level
