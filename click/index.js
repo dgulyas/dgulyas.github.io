@@ -34,10 +34,8 @@ function loadElementsAndListeners(){
 	//This is broken
 	//fix: https://stackoverflow.com/questions/41993176/determine-touch-position-on-tablets-with-javascript/61732450#61732450
 	m_canvas.addEventListener("touchstart", function (e) {
-		var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
-
+		var touch = e.touches[0] || e.changedTouches[0];
 		handleClick(touch.pageX, touch.pageY)
-		logMessage(touch.pageX + "," + touch.pageY, false) //this shows as 'undefined,undefined'
 	}, false);
 
 	m_goHigherButton = document.getElementById('goHigherButton');
