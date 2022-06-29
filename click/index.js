@@ -13,36 +13,38 @@ const m_tileLocations = {
 	4: [m_sideLength, m_sideLength]
 }
 
-let m_goHigherButton = null
 let m_numClicked = 0
+let m_highestLevel = 0
 let m_clickedNumText = null
 let m_logBox = null
 let m_levelText = null
-
+let m_goHigherButton = null
+let m_currentTile = new Tile(1, null, null)
 
 function loadElementsAndListeners(){
 	m_clickedNumText = document.getElementById("clickedNumText");
 	m_clickedNumText.style.marginLeft = m_sideLength - 65
+
 	m_logBox = document.getElementById("log")
+	
 	m_levelText = document.getElementById("levelText")
 	m_levelText.style.marginLeft = m_sideLength - 35
+
+	m_goHigherButton = document.getElementById('goHigherButton');
+	m_goHigherButton.style.marginLeft = m_sideLength - 45
+	m_goHigherButton.addEventListener("click", e => {
+		handleGoHigherClick(e)
+	});
 
 	m_canvas.addEventListener("mousedown", function (e) {
 		handleClick(e.clientX, e.clientY)
 	}, false);
 
-	//This is broken
-	//fix: https://stackoverflow.com/questions/41993176/determine-touch-position-on-tablets-with-javascript/61732450#61732450
 	m_canvas.addEventListener("touchstart", function (e) {
+		e.preventDefault()
 		var touch = e.touches[0] || e.changedTouches[0];
 		handleClick(touch.pageX, touch.pageY)
-	}, false);
-
-	m_goHigherButton = document.getElementById('goHigherButton');
-	m_goHigherButton.addEventListener("click", e => {
-		handleGoHigherClick(e)
-	});
-	m_goHigherButton.style.marginLeft = m_sideLength - 45
+	}, false);	
 }
 
 function handleClick(x, y){
@@ -178,11 +180,10 @@ function logRules(){
 	logMessages(rules)
 }
 
-let m_highestLevel = 0
-let m_currentTile = new Tile(1, null, null)
+
 loadElementsAndListeners()
 logRules()
 draw(m_context, m_currentTile)
 
-
+//Ideas:
 //Add delay to how long it takes to click a tile??
