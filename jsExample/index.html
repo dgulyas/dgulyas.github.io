@@ -1,0 +1,30 @@
+<span>Input 1:</span>
+<input type="number" id="input1" value="0"> <!-- default value is 0 -->
+<br>
+<span>Input 2:</span>
+<input type="number" id="input2" value="0">
+<br>
+<br>
+<span>Output:</span>
+<input type="number" id="output" readonly="true"> <!-- readonly so the answer can't be manually changed -->
+
+<script>
+    //Get the input box objects by searching for their id
+    let inputBox1 = document.getElementById("input1")
+    let inputBox2 = document.getElementById("input2")
+    let outputBox = document.getElementById("output")
+
+    //The function that generates the output
+    function generateNewOutput(){
+        let input1 = parseInt(inputBox1.value) // .value is the string inside the textbox. Cast to integer so it's treated like a number
+        let input2 = parseInt(inputBox2.value)
+        outputBox.value = input1 + input2 
+    }
+
+    //when either of the inputs are changed, run the function again.
+    inputBox1.onchange = generateNewOutput
+    inputBox2.onchange = generateNewOutput
+
+    //run the function when the page loads so there's a value in the output.
+    generateNewOutput()
+</script>
