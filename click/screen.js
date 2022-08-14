@@ -92,7 +92,6 @@ class Screen {
     }
 
     drawTile(tile, tileNum){
-    
         if(tile.data["clicked"]){
             this.m_context.fillStyle = "Green"
         }else{
