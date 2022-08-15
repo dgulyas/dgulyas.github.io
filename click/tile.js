@@ -1,5 +1,3 @@
-
-
 class Tile {
 
     static id = 0
