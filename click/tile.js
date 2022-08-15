@@ -1,17 +1,4 @@
-class Tree {
-    
-    constructor(level){
-        this.root = new Tile(level, null, null)
-    }
 
-    getRoot(){
-        while(this.root.parent != null){
-            this.root = this.root.parent
-        }
-        return this.root
-    }
-
-}
 
 class Tile {
 

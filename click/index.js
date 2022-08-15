@@ -2,6 +2,7 @@ let m_numClicked = 0
 let m_highestLevel = 0
 let m_currentTile = new Tile(1, null, null)
 let m_screen = new Screen()
+let m_gemCounts = [0,0,0,0,0,0,0,0]
 
 function handleTileClick(x, y){
 	tileNum = m_screen.getTileNum(x,y)
@@ -9,9 +10,11 @@ function handleTileClick(x, y){
 	if(m_currentTile.level <= 1){
 		if(m_currentTile.children[tileNum].data['clicked'] != true){
 			m_currentTile.children[tileNum].data['clicked'] = true
+			m_gemCounts[m_currentTile.level]++
 			m_screen.incrementClickedNumText()
 		}
 	}else{
+		m_gemCounts[m_currentTile.level]++
 		m_currentTile = m_currentTile.getChild(tileNum)
 	}
 	draw()
