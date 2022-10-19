@@ -1,0 +1,24 @@
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="index.css">
+	
+</head>
+
+<body>
+	<p style="font-family: Arial; padding-left: 135px; font-size: 26px; margin-bottom: 0px;"><strong>Generic Idle</strong></p>
+	<canvas style="border: 2px solid black; margin: 5px;"></canvas>
+	<br />
+	<!-- <h3 class="a" id="levelText">Level 1</h3>
+	<h4 class="a" id="clickedNumText">Num Clicked: 0</h4> -->
+	<button type="button" id="buyOBtn">Buy O</button>
+	<button type="button" id="mergeOBtn">Merge O</button>
+	<button type="button" id="buyLineBtn">Buy |</button>
+	<button type="button" id="mergeLineBtn">Merge |</button>
+	<p class="a">Log</p>
+	<textarea id="log" rows="8" cols="60" readonly style="width:401px; margin-left: 5px;"></textarea>
+
+	<!-- These need to go in body instead of head because otherwise it can't find the canvas -->
+	<script src="./screen.js"></script>
+	<script src="./gameState.js"></script>
+	<script src="./index.js"></script>
+</body>

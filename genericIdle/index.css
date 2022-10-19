@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+}
+
+p.a {
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
+
+textarea {
+    overflow-y: scroll;
+    resize: none;
+}
+
+h3.a {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+h4.a {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
