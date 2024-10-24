@@ -1,0 +1,36 @@
+# How to write test steps
+
+I've seen a lot of tickets where the test plan is left up to the imagination, or just lists specific edge cases that need to be checked. This can be sufficent if the person doing the testing has helped with the development, but often in larger teams the developers can be working in completely different areas of the codebase. Ideally anyone on the team can pick up any ticket for testing and move things along faster. However, if there aren't good test steps there will be a lot of work needed for the tester to figure out exactly what and how they should be testing. This leads to people avoiding the ticket and it stalling at the testing stage.
+
+## Guidelines
+
+1. The central issue is making sure you give enough guidance that someone vaguely familiar with the system can follow your steps, but not too much that it takes too long to write. Assume they start with a working freshly-installed system. A sweet spot might be aiming for a bit less detail than you would give an intern. It’s better to give more information that a person might already be familiar with instead of less information than the person needs to be certain they’re doing the correct thing.
+2. Links/URLs. If you don’t include them you probably hate your team mates. Don’t say “On the Users details page…..” without giving a link to the users details page. The person going through the steps should not have to spend any time trying to find the page you’re referring to. Do not make them try and remember where the page is and hunt through the entire website.
+3. Give example data in text form. If it’s steps for testing a REST endpoint, give json that they can use in the request body. If a value needs to be changed in a setting, give the new value so that the tester can copy and paste. Do not include an image of the data unless there’s other context in the image (because you cant select and copy text from an image).
+4. Use numbers for each step instead of bullet points. Then when one step isn't working, the person running the test can directly refer to the step number instead of quoting the entire step.
+5. If you're writing steps for several test cases, put less detail in later steps. The first case can have detailed steps, but later ones can refer to the initial case.
+6. You can assume that the person has read the ticket or the spec for the change that's being tested.
+
+## An example set of steps.
+
+### Case: Endpoint returns correct job log
+
+1. Go to https://api.xyzcorp.com/swagger/index.html
+   - If you are not logged in, follow: https://xyzcorp.com/wiki/manually+authenticate+with+swagger+interface.html
+2. Find the Jobs/Jenkins/Builds/Log endpoint
+3. Click "Try it out".
+4. Fill out the body with this json:
+```
+{
+  "pipelineID": "userReport",
+  "runID": 12342
+}
+```
+5. Run the request. The job runs log should be returned.
+6. Compare it with the log found at https://jenkins.xyzcorp.com/job/userReport/12342/console. It should be the same.
+7. Choose a different job run listed at https://jenkins.xyzcorp.com/job/userReport and make a request to get it's log. Make sure the response matches with the log displayed in Jenkins.
+
+### Case: Endpoint returns correct error of log doesn't exist
+
+1. Redo the above test, but in the request json body, use a runID that doesn't exist, like -1.
+2. A suitable error message should be returned, as defined in the ticket.
