@@ -1,0 +1,9 @@
+# Sprint Commitments are Mathematically Hard
+
+Sprint planning is the scrum meeting I dislike most and it's because of the phrase "The team should commit to a full sprint's worth of work". The team lead wants the team to accurately estimate how much work can be completed during the 2 week sprint, and then have them promise it will be done by end of sprint. If everything is done a few days early the planning meeting will probably center around why the team under-committed and there will be pressure to commit to more work for the next sprint. If somethings aren't done yet the the planning meeting focuses on what went "wrong", and you'll have to figure out a specific reason you can point to.
+
+This leads to long unproductive discussions around how much work can fit in the sprint. There are two forces working against each other. The desire to get 100% (or even 95%) of the committed work done by the end of the sprint, and the desire to fill the sprint so that every day is spent on the work committed to. So how can we model a piece of work?
+
+The work a ticket takes is often estimated with "story points", or some other purposefully vague measure like t-shirt sizes. A ticket might be 5 story points, however what's often ignored is the uncertainty of that measure. It would be more accurate to say that it's 5 +- 1 points. Some very uncertain ticket might even be 5 +- 4 points depending on what the initial investigation finds.
+
+So let's imagine a team is doing on average 40 points of work a sprint. They can't just add tickets to the sprint until they have 40 points worth and still expect to finish 100% of them during the sprint. If there are 20 points of uncertainty, what they've done is add 40 +- 15 points to the sprint. It could turn out to actually be 55 or 25 points of work.
